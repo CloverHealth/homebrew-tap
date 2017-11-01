@@ -16,7 +16,7 @@ First ensure you have upgraded to the latest homebrew:
 brew update
 ```
 
-It's recommended to go ahead and clear any existing Postgresql and Postgis
+It's recommended to go ahead and clear any existing Postgres and Postgis
 installations:
 
 ```sh
@@ -32,7 +32,7 @@ After this, install Clover's custom brew tap:
 brew tap cloverhealth/homebrew-tap
 ```
 
-Then install the latest version of Postgresql and unlink it. This is done first so that
+Then install the latest version of Postgres and unlink it. This is done first so that
 we can explicitly switch to an earlier version before installing Postgis:
 
 ```sh
@@ -40,13 +40,13 @@ brew install postgresql
 brew unlink postgresql
 ```
 
-Now install the Postgresql from this tap with:
+Now install Postgres from this tap with:
 
 ```sh
 brew install cloverhealth/tap/postgresql  # yes, without the homebrew-
 ```
 
-Now you will have both 9.6.5 and the latest version of Postgresql installed.
+Now you will have both 9.6.5 and the latest version of Postgres installed.
 Switch to 9.6.5 with:
 
 ```sh
@@ -59,7 +59,7 @@ Postgis 2.3 can be installed with:
 brew install cloverhealth/tap/postgis
 ```
 
-Try running and accessing Postgresql with the following:
+Try running and accessing Postgres with the following:
 
 ```sh
 brew services start postgresql
