@@ -59,11 +59,16 @@ Postgis 2.3 can be installed with:
 brew install cloverhealth/tap/postgis
 ```
 
-Try running Postgresql and verify your Postgis installation with:
+Try running and accessing Postgresql with the following:
 
 ```sh
 brew services start postgresql
 psql postgres  # It should show 9.6.5 as the version on the prompt
+```
+
+After running `psql postgres`, type the following in the prompt to verify your Postgis installation:
+
+```sh
 drop extension postgis;  # This might fail if it wasn't previously installed
 create extension postgis;  # This should pass
 select ST_Distance(
