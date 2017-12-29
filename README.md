@@ -40,6 +40,12 @@ brew install postgresql
 brew unlink postgresql
 ```
 
+The previous install of postgresql runs `initdb`, which creates database structures incompatible with 9.6.5. This needs to be removed with:
+
+```sh
+rm -rf /usr/local/var/postgres
+```
+
 Now install Postgres from this tap with:
 
 ```sh
