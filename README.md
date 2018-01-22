@@ -75,10 +75,10 @@ psql postgres  # It should show 9.6.5 as the version on the prompt
 After running `psql postgres`, type the following in the prompt to verify your Postgis installation:
 
 ```sh
-drop extension postgis;  # This might fail if it wasn't previously installed
-create extension postgis;  # This should pass
+drop extension postgis;  -- This might fail if it wasn't previously installed
+create extension postgis;  -- This should pass
 select ST_Distance(
   ST_GeometryFromText('POINT(-118.4079 33.9434)', 4326), -- Los Angeles (LAX)
   ST_GeometryFromText('POINT(2.5559 49.0083)', 4326)     -- Paris (CDG)
-);  # This should print a row with 121.898285970107 as a value
+);  -- This should print a row with 121.898285970107 as a value
 ```
