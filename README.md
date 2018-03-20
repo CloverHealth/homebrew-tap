@@ -5,7 +5,7 @@ Postgres to 9.6 and Postgis to 2.3.
 
 Homebrew will pull in the latest version of formulas when they are upgraded,
 meaning that users can inadvertently be upgraded to Postgresql 10. The
-postgresql.rb formula here ensures that 9.6.5 is installed, and the postgis.rb
+postgresql.rb formula here ensures that 9.6.8 is installed, and the postgis.rb
 formulate ensures that 2.3.2 is installed.
 
 ## Installing Postgres 9.6 and Postgis 2.3
@@ -40,7 +40,7 @@ brew install postgresql
 brew unlink postgresql
 ```
 
-The previous install of postgresql runs `initdb`, which creates database structures incompatible with 9.6.5. This needs to be removed with:
+The previous install of postgresql runs `initdb`, which creates database structures incompatible with 9.6.8. This needs to be removed with:
 
 ```sh
 rm -rf /usr/local/var/postgres
@@ -52,11 +52,11 @@ Now install Postgres from this tap with:
 brew install cloverhealth/tap/postgresql  # yes, without the homebrew-
 ```
 
-Now you will have both 9.6.5 and the latest version of Postgres installed.
-Switch to 9.6.5 with:
+Now you will have both 9.6.8 and the latest version of Postgres installed.
+Switch to 9.6.8 with:
 
 ```sh
-brew switch postgresql 9.6.5
+brew switch postgresql 9.6.8
 ```
 
 Postgis 2.3 can be installed with:
@@ -69,7 +69,7 @@ Try running and accessing Postgres with the following:
 
 ```sh
 brew services start postgresql
-psql postgres  # It should show 9.6.5 as the version on the prompt
+psql postgres  # It should show 9.6.8 as the version on the prompt
 ```
 
 After running `psql postgres`, type the following in the prompt to verify your Postgis installation:
