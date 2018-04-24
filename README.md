@@ -52,6 +52,27 @@ Now install Postgres from this tap with:
 brew install cloverhealth/tap/postgresql  # yes, without the homebrew-
 ```
 
+This may appear to fail with the following error message:
+
+```sh
+$ brew install cloverhealth/tap/postgresql
+==> Installing postgresql from cloverhealth/tap
+==> Downloading https://ftp.postgresql.org/pub/source/v9.6.5/postgresql-9.6.5.tar.bz2
+######################################################################## 100.0%
+==> ./configure --prefix=/usr/local/Cellar/postgresql/9.6.5 --datadir=/usr/local/share/postgresql --libdir=/usr/
+==> make
+==> make install-world datadir=/usr/local/Cellar/postgresql/9.6.5/share/postgresql libdir=/usr/local/Cellar/post
+Error: Failed to install plist file
+==> /usr/local/Cellar/postgresql/9.6.5/bin/initdb /usr/local/var/postgres
+Error: Calling <<-EOS.undent is disabled!
+Use <<~EOS instead.
+/usr/local/Homebrew/Library/Taps/cloverhealth/homebrew-tap/postgresql.rb:108:in `caveats'
+Please report this to the cloverhealth/tap tap!
+Or, even better, submit a PR to fix it!
+```
+
+You may ignore this error.
+
 Now you will have both 9.6.8 and the latest version of Postgres installed.
 Switch to 9.6.8 with:
 
