@@ -1,8 +1,9 @@
 class Postgis < Formula
   desc "Adds support for geographic objects to PostgreSQL"
   homepage "https://postgis.net/"
-  url "http://download.osgeo.org/postgis/source/postgis-2.3.2.tar.gz"
-  sha256 "e92e34c18f078a3d1a2503cd870efdc4fa9e134f0bcedbbbdb8b46b0e6af09e4"
+  url "https://download.osgeo.org/postgis/source/postgis-2.4.4.tar.gz"
+  sha256 "0663efb589210d5048d95c817e5cf29552ec8180e16d4c6ef56c94255faca8c2"
+  revision 1
 
   head do
     url "https://svn.osgeo.org/postgis/trunk/"
@@ -16,6 +17,7 @@ class Postgis < Formula
   option "without-gdal", "Disable postgis raster support"
   option "with-html-docs", "Generate multi-file HTML documentation"
   option "with-api-docs", "Generate developer API documentation (long process)"
+  option "with-protobuf-c", "Build with protobuf-c to enable Geobuf and Mapbox Vector Tile support"
 
   depends_on "pkg-config" => :build
   depends_on "gpp" => :build
@@ -43,6 +45,8 @@ class Postgis < Formula
     depends_on "doxygen"
   end
 
+  depends_on "protobuf-c" => :optional
+
   def install
     ENV.deparallelize
 
@@ -60,6 +64,7 @@ class Postgis < Formula
     args << "--with-gui" if build.with? "gui"
     args << "--without-raster" if build.without? "gdal"
     args << "--with-xsldir=#{Formula["docbook-xsl"].opt_prefix}/docbook-xsl" if build.with? "html-docs"
+    args << "--with-protobufdir=#{Formula["protobuf-c"].opt_bin}" if build.with? "protobuf-c"
 
     system "./autogen.sh" if build.head?
     system "./configure", *args
@@ -107,13 +112,13 @@ class Postgis < Formula
   end
 
   def caveats
-    <<-EOS
+    <<~EOS
       To create a spatially-enabled database, see the documentation:
-        https://postgis.net/docs/manual-2.2/postgis_installation.html#create_new_db_extensions
+        https://postgis.net/docs/manual-2.4/postgis_installation.html#create_new_db_extensions
       If you are currently using PostGIS 2.0+, you can go the soft upgrade path:
         ALTER EXTENSION postgis UPDATE TO "#{version}";
       Users of 1.5 and below will need to go the hard-upgrade path, see here:
-        https://postgis.net/docs/manual-2.2/postgis_installation.html#upgrading
+        https://postgis.net/docs/manual-2.4/postgis_installation.html#upgrading
 
       PostGIS SQL scripts installed to:
         #{opt_pkgshare}
@@ -126,7 +131,7 @@ class Postgis < Formula
 
   test do
     require "base64"
-    (testpath/"brew.shp").write ::Base64.decode64 <<-EOS
+    (testpath/"brew.shp").write ::Base64.decode64 <<~EOS
       AAAnCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoOgDAAALAAAAAAAAAAAAAAAA
       AAAAAADwPwAAAAAAABBAAAAAAAAAFEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
       AAAAAAAAAAAAAAAAAAEAAAASCwAAAAAAAAAAAPA/AAAAAAAA8D8AAAAAAAAA
@@ -136,7 +141,7 @@ class Postgis < Formula
       AAAAAAAAAAAABQAAABILAAAAAAAAAAAAAAAAAAAAAAAUQAAAAAAAACJAAAAA
       AAAAAEA=
     EOS
-    (testpath/"brew.dbf").write ::Base64.decode64 <<-EOS
+    (testpath/"brew.dbf").write ::Base64.decode64 <<~EOS
       A3IJGgUAAABhAFsAAAAAAAAAAAAAAAAAAAAAAAAAAABGSVJTVF9GTEQAAEMA
       AAAAMgAAAAAAAAAAAAAAAAAAAFNFQ09ORF9GTEQAQwAAAAAoAAAAAAAAAAAA
       AAAAAAAADSBGaXJzdCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
@@ -151,7 +156,7 @@ class Postgis < Formula
       ICAgICAgICAgICAgICAgICBQb2ludCAgICAgICAgICAgICAgICAgICAgICAg
       ICAgICAgICAgICAg
     EOS
-    (testpath/"brew.shx").write ::Base64.decode64 <<-EOS
+    (testpath/"brew.shx").write ::Base64.decode64 <<~EOS
       AAAnCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARugDAAALAAAAAAAAAAAAAAAA
       AAAAAADwPwAAAAAAABBAAAAAAAAAFEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
       AAAAAAAAAAAAAAAAADIAAAASAAAASAAAABIAAABeAAAAEgAAAHQAAAASAAAA
