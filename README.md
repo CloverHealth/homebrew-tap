@@ -49,7 +49,7 @@ rm -rf /usr/local/var/postgres
 Now install Postgres from this tap with:
 
 ```sh
-brew install cloverhealth/tap/postgresql # yes, without the homebrew-
+brew install cloverhealth/tap/postgresql  # yes, without the homebrew-
 ```
 
 Now you will have both 9.6.8 and the latest version of Postgres installed.
