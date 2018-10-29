@@ -1,14 +1,14 @@
 # homebrew-tap
 
 This is Clover Health's Homebrew Tap, which features formulas to help pin
-Postgres to 9.6 and Postgis to 2.3.
+Postgres to 9.6 and Postgis to 2.4.
 
 Homebrew will pull in the latest version of formulas when they are upgraded,
 meaning that users can inadvertently be upgraded to Postgresql 10. The
 postgresql.rb formula here ensures that 9.6.8 is installed, and the postgis.rb
-formulate ensures that 2.3.2 is installed.
+formulate ensures that 2.4.4 is installed.
 
-## Installing Postgres 9.6 and Postgis 2.3
+## Installing Postgres 9.6 and Postgis 2.4
 
 First ensure you have upgraded to the latest homebrew:
 
