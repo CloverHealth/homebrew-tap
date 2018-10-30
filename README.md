@@ -59,7 +59,7 @@ Switch to 9.6.8 with:
 brew switch postgresql 9.6.8
 ```
 
-Postgis 2.3 can be installed with:
+Postgis 2.4 can be installed with:
 
 ```sh
 brew install cloverhealth/tap/postgis
